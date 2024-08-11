@@ -1,0 +1,62 @@
+{% load widget_tweaks %}
+
+
+    {% comment %} define div container {% endcomment %}
+    <div class= "flex flex-col-reverse md:grid md:grid-cols-4 md:gap-4 " id="transaction_container">
+
+        {% comment %} 3/4 grid column for table pf transaction {% endcomment %}
+        <div class= "col-span-3">
+            {% if filter.qs %}
+            <table class="table ">
+                <thead class="text-xs text-white uppercase">
+                    <tr>
+                        <th class="px-6 py-3">Date</th>
+                        <th class="px-6 py-3">Category</th>
+                        <th class="px-6 py-3">Type</th>
+                        <th class="px-6 py-3">Amount</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    {% for transaction in filter.qs  %}
+                        <tr>
+                            <td>{{ transaction.date }}</td>
+                            <td>{{ transaction.Category }}</td>
+                            <td>{{ transaction.type }}</td>
+                            <td>{{ transaction.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            {% else %}
+                <p class="text-2xl text-white">
+                    No transactions found
+                </p>
+        
+            {% endif %}
+
+
+        </div>
+
+
+
+        {% comment %} 1/4 col for filter form {% endcomment %}
+        <div class= "col-span-1">
+ 
+            <form hx-get="{% url 'transaction-list' %}"
+            hx-target= "#transaction_container"
+            hx-swap="outerHTML">
+                <div class="mb-2 form-control">
+                        {{ filter.form.transaction_type|add_label_class:"label text-white" }}
+                        {% render_field filter.form.transaction_type class="select bg-gray-50  text-gray-900"%}
+                </div>
+
+
+                <button class="btn btn-success">
+                    Filter
+                </button>
+            </form>
+
+        </div>
+    </div>

@@ -1,4 +1,8 @@
 {% extends 'tracker/base.html' %}
+
+
+
+
 {% block head_title %}
     Transactions List
 {% endblock head_title %}
@@ -13,34 +17,7 @@
 </h1>
 
 <div class="relative overflow-x-auto text-white">
-    {% if transactions %}
-    <table class="table ">
-        <thead class="text-xs text-white uppercase">
-            <tr>
-                <th class="px-6 py-3">Date</th>
-                <th class="px-6 py-3">Category</th>
-                <th class="px-6 py-3">Type</th>
-                <th class="px-6 py-3">Amount</th>
-            </tr>
-        </thead>
+    {% include 'tracker/partials/transaction-container.html'%}
 
-        <tbody>
-            {% for transaction in transactions  %}
-                <tr>
-                    <td>{{ transaction.date }}</td>
-                    <td>{{ transaction.Category }}</td>
-                    <td>{{ transaction.type }}</td>
-                    <td>{{ transaction.amount }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {% else %}
-        <p class="text-2xl text-white">
-            No transactions found
-        </p>
-
-    {% endif %}
 </div>
 {% endblock content %}
