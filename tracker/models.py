@@ -36,6 +36,7 @@ class Transaction(models.Model):
     def __str__(self) -> str:
         return f"{self.type} of {self.amount} on {self.date} by {self.user}"
     
-    
+    class Meta:
+        ordering = ['-date']
 
 
