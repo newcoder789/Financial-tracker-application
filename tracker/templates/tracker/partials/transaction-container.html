@@ -1,11 +1,36 @@
 {% load widget_tweaks %}
-
+{% load humanize %}
 
     {% comment %} define div container {% endcomment %}
     <div class= "flex flex-col-reverse md:grid md:grid-cols-4 md:gap-4 " id="transaction_container">
 
-        {% comment %} 3/4 grid column for table pf transaction {% endcomment %}
+        {% comment %} 3/4 grid column or table pf transaction {% endcomment %}
         <div class= "col-span-3">
+            <div class="my-4"> 
+                <h1 class="mt-4 mb-4 prose prose-2xl text-white">
+                    Totals
+                </h1>
+                <table class="table">
+                    <thead class="text-xs text-white uppercase">
+                        <tr>
+                            <th> Total Income </th>
+                            <th> Total Exapense</th>
+                            <th> Net Income</th>
+                        </tr>
+
+                    </thead>
+                        <tr>
+                            <td>₹{{ total_income|floatformat:2|intcomma  }}</td>
+                            <td>₹{{ total_expense|floatformat:2|intcomma       }}</td>
+                            <td>₹{{ net_income|floatformat:2|intcomma       }}</td>
+
+                        </tr>
+                </table>
+
+            </div>
+            <h1 class="mt-8 mb-4 prose prose-2xl text-white">
+                Transactions
+            </h1>
             {% if filter.qs %}
             <table class="table ">
                 <thead class="text-xs text-white uppercase">
@@ -16,7 +41,8 @@
                         <th class="px-6 py-3">Amount</th>
                     </tr>
                 </thead>
-        
+                
+
                 <tbody>
                     {% for transaction in filter.qs  %}
                         <tr>

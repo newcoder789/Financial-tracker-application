@@ -10,6 +10,7 @@ class TransactionFilter(django_filters.FilterSet):
         empty_label = 'Any',            
     )
     
+     
     class Meta:
         model = Transaction
         fields= ('transaction_type',)
