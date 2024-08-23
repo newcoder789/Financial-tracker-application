@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Category",
+            name="category",
             fields=[
                 (
                     "id",
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
                 ("date", models.DateField()),
                 (
-                    "Category",
+                    "category",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to="tracker.category",

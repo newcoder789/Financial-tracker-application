@@ -1,7 +1,6 @@
 import pytest
 from tracker.models import Transaction
 
-
 @pytest.mark.django_db
 def test_queryset_get_income_method(transactions):
     qs = Transaction.objects.get_income()

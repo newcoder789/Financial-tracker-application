@@ -32,7 +32,7 @@ class Command(BaseCommand):
         types = [x[0] for x in Transaction.TRANSACTION_TYPE_CHOICES]
         for i in range(20):
             Transaction.objects.create(
-                  Category = random.choice(categories),
+                  category = random.choice(categories),
                   user = user,  
                   amount = random.uniform(100,8000), # random floating no
                   date = fake.date_between(start_date='-1y',end_date='today'), # it will create something in past year

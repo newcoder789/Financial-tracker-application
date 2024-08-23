@@ -34,7 +34,7 @@ class TransactionFactory(factory.django.DjangoModelFactory):
         model = Transaction
         
     user = factory.SubFactory(UserFactory)
-    Category = factory.SubFactory(CategoryFactory)
+    category = factory.SubFactory(CategoryFactory)
     amount = 500
     date = factory.Faker(
         'date_between',

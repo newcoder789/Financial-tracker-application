@@ -7,3 +7,10 @@ nav {
     color: white;
     background-color: #182c34;
 }
+
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+     filter: invert(0.7);/* Adjusts the intensity and color of the calendar button  */
+     opacity: 0.8;/* Makes the button slightly transparent   */
+} 

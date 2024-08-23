@@ -28,9 +28,22 @@
                 </table>
 
             </div>
+            
+        <div class="flex justify-between items-center mt-4 mb-6">
             <h1 class="mt-8 mb-4 prose prose-2xl text-white">
                 Transactions
             </h1>
+            <a hx-get="{% url 'create-transaction' %}"
+            hx-push-url="true"
+            hx-target="#transaction-block"
+            class="cursor-pointer">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="green" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+            </a>
+    </div>
+
             {% if filter.qs %}
             <table class="table ">
                 <thead class="text-xs text-white uppercase">
@@ -47,7 +60,7 @@
                     {% for transaction in filter.qs  %}
                         <tr>
                             <td>{{ transaction.date }}</td>
-                            <td>{{ transaction.Category }}</td>
+                            <td>{{ transaction.category }}</td>
                             <td>{{ transaction.type }}</td>
                             <td>{{ transaction.amount }}</td>
                         </tr>
@@ -70,15 +83,26 @@
         {% comment %} 1/4 col for filter form {% endcomment %}
         <div class= "col-span-1">
  
-            <form hx-get="{% url 'transaction-list' %}"
+            <form hx-get="{% url 'transactions-list' %}"
             hx-target= "#transaction_container"
             hx-swap="outerHTML">
                 <div class="mb-2 form-control">
                         {{ filter.form.transaction_type|add_label_class:"label text-white" }}
                         {% render_field filter.form.transaction_type class="select bg-gray-50  text-gray-900"%}
                 </div>
+                <div class="mb-2 form-control">
+                        {{ filter.form.start_date|add_label_class:"label text-white" }}
+                        {% render_field filter.form.start_date class="input bg-gray-50 text-gray-900"%}
+                </div>
+                <div class="mb-2 form-control">
+                        {{ filter.form.end_date|add_label_class:"label text-white" }}
+                        {% render_field filter.form.end_date class="input bg-gray-50 text-gray-900"%}
+                </div>
 
-
+                <div class="mb-4 form-control">
+                    {% render_field filter.form.category class="text-green-500 border-gray-300 rounded focus:ring-green-500" %}
+                </div>
+    
                 <button class="btn btn-success">
                     Filter
                 </button>
